@@ -10,6 +10,14 @@ The main purpose for the writing of this application was:
 
 ## Setup
 
+***Database***
+
+Prior to executing the migration scripts create a `nerd_trivia` schema within the target mysql environment.
+
+Then run the following:
+
+```php artisan migrate```
+
 ## Background
 
 ## Next Steps
