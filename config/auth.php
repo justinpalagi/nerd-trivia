@@ -65,10 +65,10 @@ return [
     |
     */
 
-    /*'providers' => [
+    'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => App\Participant::class,
         ],
 
         // 'users' => [

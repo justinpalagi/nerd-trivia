@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Participant $participant
  * @property Question $question
  */
-class Answers extends Model
+class Answer extends Model
 {
     /**
      * The table associated with the model.

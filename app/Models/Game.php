@@ -47,4 +47,6 @@ class Game extends Model
     {
         return $this->hasMany('App\Question', null, 'game_id');
     }
+
+    public $timestamps = false;
 }
