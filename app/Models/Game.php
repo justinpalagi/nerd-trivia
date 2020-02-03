@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $game_id
  * @property string $ip
  * @property string $create_at
+ * @property string $code
  * @property Participant[] $participants
  * @property Question[] $questions
  */
@@ -30,7 +31,7 @@ class Game extends Model
     /**
      * @var array
      */
-    protected $fillable = ['ip', 'create_at'];
+    protected $fillable = ['ip', 'create_at', 'code'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

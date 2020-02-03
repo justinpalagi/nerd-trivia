@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\BusinessLogic\GameBL;
 use Illuminate\Http\Request;
 use App\Repositories\Contracts\IGameRepository;
 
 class GameController extends Controller
 {
-    protected $repo;
+    /**
+     *
+     * @param  IGameRepository  $repo
+     * @return void
+     */
+    public function __construct(IGameRepository $repo)
+    {
+        $this->gameRepository = $repo;
+    }
     
     /**
      * Create a new Game
@@ -19,19 +28,37 @@ class GameController extends Controller
     {
         $ip = $request->ip();
 
-        $game = $this->repo->createGame($ip);
+        $game = $this->getGameBL()->createGame($ip);
+        if($game == null)
+            return response()->json(['error' => 'An error occurred creating the game.'], 500);
 
-        //This isn't working. Model Extension?
-        return $game->json();
+        return $game->code;
     }
 
     /**
+     * Gets/Sets Lazy Property $gameBL
      *
-     * @param  IGameRepository  $repo
-     * @return void
+     * @return GameBL
      */
-    public function __construct(IGameRepository $repo)
+    public function getGameBL()
     {
-        $this->repo = $repo;
+        if($this->gameBL == null)
+            $this->gameBL = new GameBL($this->gameRepository);
+
+        return $this->gameBL;
     }
+
+    /**
+     * Lazy Loaded Game Business Logic
+     * 
+     * @var GameBL
+     */
+    private $gameBL;
+
+    /**
+     * Data access layer games entity
+     * 
+     * @var IGameRepository
+     */
+    protected $gameRepository;
 }

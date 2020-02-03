@@ -4,10 +4,11 @@ namespace App\Repositories;
 
 use Exception;
 use App\Game;
+use App\Question;
 use Carbon\Carbon;
 use App\Repositories\Contracts\IGameRepository;
 
-class GameRepository implements IGameRepository
+class GameRepository extends BaseEloquentRepository implements IGameRepository
 {
     public function createGame($ip)
     {
@@ -21,7 +22,7 @@ class GameRepository implements IGameRepository
         return $newGame;
     }
 
-    public function createQuestion($question_factory)
+    public function createQuestion(Question $question_factory)
     {
         throw new Exception('Not implemented');
     }
@@ -34,5 +35,18 @@ class GameRepository implements IGameRepository
     public function getGame($game_id)
     {
         throw new Exception('Not implemented');
+    }
+
+    //TODO: Consider third party extension
+    public function setCode(Game $game)
+    {
+        $generatedCode = strtoupper(substr(uniqid(), -6));
+        while(Game::where('code', $generatedCode)->first() != null)
+        {
+            $generatedCode = strtoupper(substr(uniqid(), -6));
+        }
+
+        $game->code = $generatedCode;
+        $game->save();
     }
 }
