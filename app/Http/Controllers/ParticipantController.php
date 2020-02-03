@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Repositories\Contracts\IParticipantRepository;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class ParticipantController extends Controller
 {
@@ -56,7 +55,7 @@ class ParticipantController extends Controller
     }
 
     /**
-     * Data access layer games entity
+     * Data access layer to games entities
      * 
      * @var IParticipantRepository
      */
