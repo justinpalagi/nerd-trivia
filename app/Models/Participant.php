@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * @property integer $participant_id
@@ -11,8 +12,10 @@ use Illuminate\Database\Eloquent\Model;
  * @property Game $game
  * @property ParticipantAnswer[] $participantAnswers
  */
-class Participant extends Model
+class Participant extends Authenticatable
 {
+    use HasApiTokens;
+
     /**
      * The primary key for the model.
      * 
@@ -47,4 +50,6 @@ class Participant extends Model
     {
         return $this->hasMany('App\ParticipantAnswer', null, 'participant_id');
     }
+
+    public $timestamps = false;
 }

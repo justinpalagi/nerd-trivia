@@ -22,17 +22,17 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
         return $newGame;
     }
 
-    public function createQuestion(Question $question_factory)
+    public function createQuestion(Question $questionData)
     {
         throw new Exception('Not implemented');
     }
     
-    public function getAnswer($game_id, $question_id)
+    public function getAnswer($gameId, $questionId)
     {
         throw new Exception('Not implemented');
     }
     
-    public function getGame($game_id)
+    public function getGame($gameId)
     {
         throw new Exception('Not implemented');
     }

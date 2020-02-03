@@ -14,3 +14,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/game', 'GameController@new');
+
+Route::get('/participation', 'ParticipantController@join');
+
+Route::get('/question', 'ParticipantController@question')->middleware('auth:api');

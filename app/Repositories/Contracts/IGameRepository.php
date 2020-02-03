@@ -21,7 +21,7 @@ interface IGameRepository
      * @param 
      * @return Question
      */
-    public function createQuestion(Question $question_data);
+    public function createQuestion(Question $questionData);
 
     /** 
      * Query database for matching questions
@@ -30,7 +30,7 @@ interface IGameRepository
      * @param long question_id
      * @return Question
      */
-    public function getAnswer($game_id, $question_id);
+    public function getAnswer($gameId, $questionId);
 
     /** 
      * Query database for matching game
@@ -38,7 +38,7 @@ interface IGameRepository
      * @param long game_id
      * @return Game
      */
-    public function getGame($game_id);
+    public function getGame($gameId);
 
     /** 
      * Generate and set unique user friendly code

@@ -10,7 +10,7 @@ interface IParticipantRepository
      * @param  
      * @return Answer
      */
-    public function createAnswer($answer_data);
+    public function createAnswer($answerData);
 
     /** 
      * Saves Participant to database
@@ -18,5 +18,5 @@ interface IParticipantRepository
      * @param  
      * @return Participant
      */
-    public function createParticipant($participant_data);
+    public function createParticipant($gameId, $participantName);
 }
