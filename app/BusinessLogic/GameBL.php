@@ -26,19 +26,19 @@ class GameBL
     {
         try 
         {
-            $this->gameRepository->startTransaction();
+            $this->gameRepository->startStorageTransaction();
 
             $newGame = $this->gameRepository->createGame($ip);
     
             $this->gameRepository->setCode($newGame);
     
-            $this->gameRepository->endTransaction();
+            $this->gameRepository->endStorageTransaction();
         } 
         catch (\PDOException $e) 
         {
             //Log exception
 
-            $this->gameRepository->rollBackTransaction();
+            $this->gameRepository->handleTransactionError();
         }
 
         return $newGame;

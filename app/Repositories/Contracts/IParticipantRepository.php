@@ -2,7 +2,7 @@
 
 namespace App\Repositories\Contracts;
 
-interface IParticipantRepository
+interface IParticipantRepository extends IBaseRepository
 {
     /**
      * Saves Answer to database

@@ -5,7 +5,7 @@ namespace App\Repositories\Contracts;
 use App\Game;
 use App\Question;
 
-interface IGameRepository
+interface IGameRepository extends IBaseRepository
 {
     /** 
      * Save Game to database

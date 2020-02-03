@@ -2,16 +2,17 @@
 
 namespace App\Repositories;
 
+use App\Repositories\Contracts\IBaseRepository;
 use Illuminate\Support\Facades\DB;
 
-abstract class BaseEloquentRepository
+abstract class BaseEloquentRepository implements IBaseRepository
 {
     /**
      * Start Database Transaction
      * 
      * @return null
      */
-    public function startTransaction() 
+    public function startStorageTransaction() 
     {
         DB::beginTransaction();
     }
@@ -21,7 +22,7 @@ abstract class BaseEloquentRepository
      * 
      * @return null
      */
-    public function endTransaction()
+    public function endStorageTransaction()
     {
         DB::commit();
     }
@@ -31,7 +32,7 @@ abstract class BaseEloquentRepository
      * 
      * @return null
      */
-    public function rollBackTransaction()
+    public function handleTransactionError()
     {
         DB::rollBack();
     }
