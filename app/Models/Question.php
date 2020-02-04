@@ -48,7 +48,7 @@ class Question extends Model
      */
     public function participantAnswers()
     {
-        return $this->hasMany('App\ParticipantAnswer', 'question_id');
+        return $this->hasMany('App\Answer', 'question_id');
     }
 
     public $timestamps = false;

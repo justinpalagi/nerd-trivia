@@ -18,3 +18,5 @@ Route::get('/game', 'GameController@newGame');
 Route::post('/game/{gameCode}/participant', 'ParticipantController@joinGame');
 
 Route::get('/question', 'GameController@nextQuestion')->middleware('auth:api');
+
+Route::post('/question/{questionId}/answer', 'ParticipantController@postAnswer')->middleware('auth:api');

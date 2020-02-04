@@ -26,8 +26,8 @@ interface IGameRepository extends IBaseRepository
     /** 
      * Query database for matching questions
      * 
-     * @param long $gameId
-     * @param long $questionId
+     * @param int $gameId
+     * @param int $questionId
      * @return Question
      */
     public function getAnswer($gameId, $questionId);
@@ -35,7 +35,7 @@ interface IGameRepository extends IBaseRepository
     /** 
      * Query database for matching game
      * 
-     * @param long $gameCode
+     * @param int $gameCode
      * @return Game
      */
     public function getGameByCode($gameCode);
@@ -43,7 +43,7 @@ interface IGameRepository extends IBaseRepository
     /** 
      * Query database for matching game
      * 
-     * @param long $gameId
+     * @param int $gameId
      * @return Game
      */
     public function getGameById($gameId);

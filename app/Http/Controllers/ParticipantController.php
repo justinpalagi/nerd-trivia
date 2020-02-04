@@ -50,6 +50,34 @@ class ParticipantController extends Controller
     }
 
     /**
+     * Score and Save Answer
+     *
+     * @param int $questionId
+     */
+    public function postAnswer(Request $request, $questionId)
+    {
+        //TODO: Data validation
+        //TODO: Should check that game hasn't started or expired
+        $game = $this->gameRepository->getGameById($request->user()->game_id);
+        if($game == null)
+            return response()->json(['error' => 'Could not find the game.'], 404);
+
+        $question = $game->questions->firstWhere('question_id', $questionId);
+        if($game == null)
+            return response()->json(['error' => 'Could not find the question.'], 404);
+
+        $participantAnswer = $question->participantAnswers->firstWhere('participant_id', $request->user()->participant_id);
+        if($participantAnswer != null)
+            return response()->json(['error' => 'You have already answered this question.'], 403);
+
+        $data = $request->json()->all();
+        $this->getParticipantBL()->saveAnswer($game->game_id, $question, $request->user(), $data['answer']);
+
+        //TODO: consider returning actual answer
+        return;
+    }
+
+    /**
      * Gets/Sets Lazy Property $participantBL
      *
      * @return ParticipantBL

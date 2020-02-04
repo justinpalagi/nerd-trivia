@@ -46,18 +46,12 @@ class GameController extends Controller
         //TODO: Check if game is still active
         $game = $this->gameRepository->getGameById($request->user()->game_id);
         if($game == null)
-        return response()->json(['error' => 'Could not find the game.'], 404);
+            return response()->json(['error' => 'Could not find the game.'], 404);
 
         $question = $this->getGameBL()->getNextQuestion($game);
         if($question == null)
             return response()->json(['error' => 'There are no more questions for this game.'], 404);
 
-        //TODO: Serialize extension on Question Model
-        // return response()->json([
-        //     'question'=>$question->question,
-        //     'category'=>$question->category,
-        //     'id'=>$question->question_id
-        // ]);
         return $question->makeHidden('answer')->toJson();
     }
 

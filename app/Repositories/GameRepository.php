@@ -45,8 +45,8 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
     /** 
      * Query database for matching questions
      * 
-     * @param long game_id
-     * @param long question_id
+     * @param int game_id
+     * @param int question_id
      * @return Question
      */
     public function getAnswer($gameId, $questionId)
@@ -57,7 +57,7 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
     /** 
      * Query database for matching game
      * 
-     * @param long game_id
+     * @param int game_id
      * @return Game
      */
     public function getGameByCode($gameCode)
@@ -68,7 +68,7 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
     /** 
      * Query database for matching game
      * 
-     * @param long $gameId
+     * @param int $gameId
      * @return Game
      */
     public function getGameById($gameId)

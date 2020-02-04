@@ -48,7 +48,7 @@ class Participant extends Authenticatable
      */
     public function participantAnswers()
     {
-        return $this->hasMany('App\ParticipantAnswer', 'participant_id');
+        return $this->hasMany('App\Answer', 'participant_id');
     }
 
     public $timestamps = false;
