@@ -40,7 +40,7 @@ class Participant extends Authenticatable
      */
     public function game()
     {
-        return $this->belongsTo('App\Game', null, 'game_id');
+        return $this->belongsTo('App\Game', 'game_id');
     }
 
     /**
@@ -48,7 +48,7 @@ class Participant extends Authenticatable
      */
     public function participantAnswers()
     {
-        return $this->hasMany('App\ParticipantAnswer', null, 'participant_id');
+        return $this->hasMany('App\ParticipantAnswer', 'participant_id');
     }
 
     public $timestamps = false;

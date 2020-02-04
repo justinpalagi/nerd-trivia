@@ -13,8 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/game', 'GameController@new');
+Route::get('/game', 'GameController@newGame');
 
-Route::get('/participation', 'ParticipantController@join');
+Route::post('/game/{gameCode}/participant', 'ParticipantController@joinGame');
 
-Route::get('/question', 'ParticipantController@question')->middleware('auth:api');
+Route::get('/question', 'GameController@nextQuestion')->middleware('auth:api');

@@ -46,7 +46,7 @@ class Answer extends Model
      */
     public function participant()
     {
-        return $this->belongsTo('App\Participant', null, 'participant_id');
+        return $this->belongsTo('App\Participant', 'participant_id');
     }
 
     /**
@@ -54,6 +54,8 @@ class Answer extends Model
      */
     public function question()
     {
-        return $this->belongsTo('App\Question', null, 'question_id');
+        return $this->belongsTo('App\Question', 'question_id');
     }
+
+    public $timestamps = false;
 }

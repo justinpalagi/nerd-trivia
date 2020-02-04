@@ -40,7 +40,7 @@ class Question extends Model
      */
     public function game()
     {
-        return $this->belongsTo('App\Game', null, 'game_id');
+        return $this->belongsTo('App\Game', 'game_id');
     }
 
     /**
@@ -48,6 +48,8 @@ class Question extends Model
      */
     public function participantAnswers()
     {
-        return $this->hasMany('App\ParticipantAnswer', null, 'question_id');
+        return $this->hasMany('App\ParticipantAnswer', 'question_id');
     }
+
+    public $timestamps = false;
 }

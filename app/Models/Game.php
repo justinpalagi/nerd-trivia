@@ -38,7 +38,7 @@ class Game extends Model
      */
     public function participants()
     {
-        return $this->hasMany('App\Participant', null, 'game_id');
+        return $this->hasMany('App\Participant', 'game_id');
     }
 
     /**
@@ -46,7 +46,7 @@ class Game extends Model
      */
     public function questions()
     {
-        return $this->hasMany('App\Question', null, 'game_id');
+        return $this->hasMany('App\Question', 'game_id');
     }
 
     public $timestamps = false;

@@ -13,7 +13,7 @@ class ParticipantRepository extends BaseEloquentRepository implements IParticipa
      * @param  
      * @return Answer
      */
-    public function createAnswer($answerData){}
+    public function createAnswer($questionId, $answer){}
 
     /** 
      * Saves Participant to database

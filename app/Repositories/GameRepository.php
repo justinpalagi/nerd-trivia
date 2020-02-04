@@ -13,7 +13,7 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
     /** 
      * Save Game to database
      * 
-     * @param string ip
+     * @param string $ip
      * @return Game
      */
     public function createGame($ip)
@@ -31,12 +31,15 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
     /** 
      * Save Qustion to database
      * 
-     * @param 
+     * @param Question $questionData
      * @return Question
      */
     public function createQuestion(Question $questionData)
     {
-        throw new Exception('Not implemented');
+        $questionData->start_time = Carbon::now('UTC');
+        $questionData->save();
+
+        return $questionData;
     }
     
     /** 
@@ -57,9 +60,20 @@ class GameRepository extends BaseEloquentRepository implements IGameRepository
      * @param long game_id
      * @return Game
      */
-    public function getGame($gameId)
+    public function getGameByCode($gameCode)
     {
-        throw new Exception('Not implemented');
+        return Game::where('code', $gameCode)->first();
+    }
+
+    /** 
+     * Query database for matching game
+     * 
+     * @param long $gameId
+     * @return Game
+     */
+    public function getGameById($gameId)
+    {
+        return Game::where('game_id', $gameId)->first();
     }
 
     /** 

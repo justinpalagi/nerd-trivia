@@ -24,7 +24,7 @@ class GameController extends Controller
      * @param  Request  $request
      * @return Response
      */
-    public function new(Request $request)
+    public function newGame(Request $request)
     {
         $ip = $request->ip();
 
@@ -36,11 +36,37 @@ class GameController extends Controller
     }
 
     /**
+     * Get the next question for the game
+     *
+     * @param  Request  $request
+     * @return Response
+     */
+    public function nextQuestion(Request $request)
+    {
+        //TODO: Check if game is still active
+        $game = $this->gameRepository->getGameById($request->user()->game_id);
+        if($game == null)
+        return response()->json(['error' => 'Could not find the game.'], 404);
+
+        $question = $this->getGameBL()->getNextQuestion($game);
+        if($question == null)
+            return response()->json(['error' => 'There are no more questions for this game.'], 404);
+
+        //TODO: Serialize extension on Question Model
+        // return response()->json([
+        //     'question'=>$question->question,
+        //     'category'=>$question->category,
+        //     'id'=>$question->question_id
+        // ]);
+        return $question->makeHidden('answer')->toJson();
+    }
+
+    /**
      * Gets/Sets Lazy Property $gameBL
      *
      * @return GameBL
      */
-    public function getGameBL()
+    private function getGameBL()
     {
         if($this->gameBL == null)
             $this->gameBL = new GameBL($this->gameRepository);
@@ -56,7 +82,6 @@ class GameController extends Controller
     private $gameBL;
 
     /**
-     * Data access layer games entity
      * 
      * @var IGameRepository
      */
