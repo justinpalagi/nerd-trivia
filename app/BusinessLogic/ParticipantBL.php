@@ -91,9 +91,7 @@ class ParticipantBl
         $endTime = Carbon::now();
 
         $difference = $startTime->diffInSeconds($endTime);
-
-        error_log($difference);
-        
+      
         if($difference <= 10)
             return 6;
         if($difference <= 20)
